@@ -1,4 +1,4 @@
-# Image similarity evaluation using ImgSim"
+# Image similarity evaluation using ImgSim
 ## Evnvironment
 * Windows 11
 * Python 3.12.7
