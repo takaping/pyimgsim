@@ -1,24 +1,23 @@
-# PySide6を使ったImage Viewer
-ImgSimによる画像の類似度評価
-## 環境
+# Image similarity evaluation using ImgSim"
+## Evnvironment
 * Windows 11
 * Python 3.12.7
-* requirements.txtを参照
+* Refer to requirements.txt
 
-[OpenCVのライセンス](https://opencv.org/license/)
+[License of OpenCV](https://opencv.org/license/)
 
-[PySideのライセンス](https://doc.qt.io/qtforpython-6/licenses.html)
+[License of PySide](https://doc.qt.io/qtforpython-6/licenses.html)
 
-[imgsimのライセンス](https://pypi.org/project/imgsim/#description)
+[License of imgsim](https://pypi.org/project/imgsim/#description)
 
-## ソースファイル
-| ファイル名 | 概要 |
+## Source files
+| File name | Overview |
 |----------|------|
-| imagesetdialog.py | 画像セットのクラスを実装 |
-| imageview.py | 画像のビュークラスを実装 |
-| mainwindow.py | メインウィンドウクラスを実装 |
-| pyimgsim.py | メインプログラム<br>クラス間のSignsl, Slotの設定 |
-｜mainwindow.ui | メインウィンドウのレイアウト<br>PySide6のパッケージフォルダ内の<br>designer.exeを使用 |
-| ui_mainwindow.py | Scripts内のpyside6-uic.exeを<br>使用してmainwindow.uiから変換<br>mainwindow.py で使用 |
-| imagesetdialog.ui | 画像セットの操作を行うダイアログボックス<br>PySide6のパッケージフォルダ内の<br>designer.exeを使用 |
- |ui_imagesetdialog.py | Scripts内のpyside6-uic.exeを<br>imagesetdialog.uiから変換<br>mainwindow.py で使用 |
+| imagesetdialog.py | Implementing image set classes |
+| imageview.py | Implement image view classes |
+| mainwindow.py | Implement the main window class |
+| pyimgsim.py | Main program<br>Configuring Signals and Slots between classes |
+｜mainwindow.ui | Layout of main window<br>Use designer.exe <br>in the PySide6 package folder. |
+| ui_mainwindow.py | Generate a Python file from mainwindow.ui <br>using pyside6-uic.exe in the Scripts folder, <br>then use it in mainwindow.py |
+| imagesetdialog.ui | Dialog box for manipulating image sets<br>Use designer.exe <br>in the PySide6 package folder. |
+ |ui_imagesetdialog.py | Generate a Python file from imagesetdialog.ui <br>using pyside6-uic.exe in the Scripts folder, <br>then use it in imagesetdialog.py |
