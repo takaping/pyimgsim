@@ -77,7 +77,7 @@ class Ui_imgSetDialog(object):
         self.synthViewComboBox.setItemText(1, QCoreApplication.translate("imgSetDialog", u"KeyPoints", None))
 
         self.numCumlustersEdit.setInputMask("")
-        self.numCumlustersEdit.setText(QCoreApplication.translate("imgSetDialog", u"500", None))
+        self.numCumlustersEdit.setText(QCoreApplication.translate("imgSetDialog", u"100", None))
         self.label.setText(QCoreApplication.translate("imgSetDialog", u"number of clusters", None))
     # retranslateUi
 

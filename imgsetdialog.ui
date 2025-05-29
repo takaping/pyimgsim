@@ -135,7 +135,7 @@
     <string/>
    </property>
    <property name="text">
-    <string>500</string>
+    <string>100</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
