@@ -1,4 +1,4 @@
-# Image similarity evaluation using ImgSim"
+# Image similarity evaluation using Bag of Visual Words"
 ## Evnvironment
 * Windows 11
 * Python 3.12.7
@@ -8,12 +8,11 @@
 
 [License of PySide](https://doc.qt.io/qtforpython-6/licenses.html)
 
-[License of imgsim](https://pypi.org/project/imgsim/#description)
-
 ## Source files
 | File name | Overview |
 |----------|------|
-| imagesetdialog.py | Implementing image set classes |
+| imageset.py | Implement image set classes |
+| imagesetdialog.py | Implement image control classes |
 | imageview.py | Implement image view classes |
 | mainwindow.py | Implement the main window class |
 | pyimgsim.py | Main program<br>Configuring Signals and Slots between classes |
