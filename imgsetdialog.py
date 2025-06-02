@@ -55,7 +55,12 @@ class ImgsetDialog(QDialog, Ui_imgSetDialog):
 
     @Slot()
     def on_real_images_open(self):
-        fpathlist = self.fpathlist_selected()
+        fpathlist =[r'D:\Users\takap\OneDrive\画像\datasets\Class3\1.png',
+                    r'D:\Users\takap\OneDrive\画像\datasets\Class3\2.png',
+                    r'D:\Users\takap\OneDrive\画像\datasets\Class3\3.png',
+                    r'D:\Users\takap\OneDrive\画像\datasets\Class3\4.png',
+                    r'D:\Users\takap\OneDrive\画像\datasets\Class3\5.png']
+        #  fpathlist = self.fpathlist_selected()
         if fpathlist is None:
             return
         self.__real_imgset = ImageSet.create_imageset(fpathlist)
@@ -81,7 +86,12 @@ class ImgsetDialog(QDialog, Ui_imgSetDialog):
 
     @Slot()
     def on_synth_images_open(self):
-        fpathlist = self.fpathlist_selected()
+        fpathlist =[r'D:\Users\takap\OneDrive\画像\datasets\Class6\1.png',
+                    r'D:\Users\takap\OneDrive\画像\datasets\Class6\2.png',
+                    r'D:\Users\takap\OneDrive\画像\datasets\Class6\3.png',
+                    r'D:\Users\takap\OneDrive\画像\datasets\Class6\4.png',
+                    r'D:\Users\takap\OneDrive\画像\datasets\Class6\5.png']
+        # fpathlist = self.fpathlist_selected()
         if fpathlist is None:
             return
         self.__synth_imgset = ImageSet.create_imageset(fpathlist)
@@ -110,9 +120,9 @@ class ImgsetDialog(QDialog, Ui_imgSetDialog):
         num_clusters = int(self.numCumlustersEdit.text())
         matcher = cv2.BFMatcher()
         extractor = cv2.BOWImgDescriptorExtractor(self.__detector, matcher)
-        representative_probabilities = self.__real_imgset.compute_representative_probabilities(extractor, num_clusters=num_clusters)
-        real_similaritylist = self.__real_imgset.similarity(extractor, representative_probabilities)
-        synth_similaritylist = self.__synth_imgset.similarity(extractor, representative_probabilities)
+        representative_descriptors, codebook = self.__real_imgset.compute_representative_descriptors(extractor, num_clusters=num_clusters)
+        real_similaritylist = self.__real_imgset.similarity(extractor, representative_descriptors)
+        synth_similaritylist = self.__synth_imgset.similarity(extractor, representative_descriptors)
         self.itemmodel.clear()
         for i, similarity in enumerate(real_similaritylist):
             item = QStandardItem(f'real: {self.realComboBox.itemText(i)} = {similarity:.03f}')

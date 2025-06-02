@@ -11,7 +11,7 @@ class ImageSet:
         self.__desclist = []
         self.__index_of_view = 0
         self.__index_of_image = 0
-        self.__problist = []
+        self.__bowdesclist = []
 
 
     @classmethod
@@ -47,7 +47,7 @@ class ImageSet:
         self.__desclist.clear()
         self.__index_of_view = 0
         self.__index_of_image = 0
-        self.__problist.clear()
+        self.__bowdesclist.clear()
 
     def open_images(self, fpathlist: list) -> None:
         self.clear_all()
@@ -71,28 +71,27 @@ class ImageSet:
             return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         
 
-    def compute_problist(self, extractor):
-        self.__problist.clear()
+    def compute_bowdesclist(self, extractor):
+        self.__bowdesclist.clear()
         for img, kp in zip(self.__imglist, self.__kplist):
             desc = extractor.compute(img, kp)[0]
-            self.__problist.append(desc)
-    
+            self.__bowdesclist.append(desc)
 
-    def compute_representative_probabilities(self, extractor, num_clusters=100):
+    def compute_representative_descriptors(self, extractor, num_clusters=100):
         bovw_trainer = cv2.BOWKMeansTrainer(clusterCount=num_clusters)
         for desc in self.__desclist:
             bovw_trainer.add(desc.astype(np.float32))
-        vocabulary = bovw_trainer.cluster()
-        extractor.setVocabulary(vocabulary)
-        self.compute_problist(extractor)
-        representative_probabilities = np.mean(self.__problist, axis=0)
-        return representative_probabilities
+        codebook = bovw_trainer.cluster()
+        extractor.setVocabulary(codebook)
+        self.compute_bowdesclist(extractor)
+        representative_descriptors = np.mean(self.__bowdesclist, axis=0)
+        return representative_descriptors, codebook
 
 
-    def similarity(self, extractor, representative_probabilities):
+    def similarity(self, extractor, representative_descriptors):
         similarities = []
-        self.compute_problist(extractor)
-        for prob in self.__problist:
-            s = sum(map(lambda x: min(x[0], x[1]), zip(representative_probabilities, prob)))
+        self.compute_bowdesclist(extractor)
+        for desc in self.__bowdesclist:
+            s = sum(map(lambda x: min(x[0], x[1]), zip(representative_descriptors, desc)))
             similarities.append(s)
         return similarities
